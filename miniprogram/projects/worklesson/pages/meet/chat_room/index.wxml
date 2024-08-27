@@ -1,0 +1,161 @@
+<view>
+  <!-- 中间聊天滑动区域 -->
+  <scroll-view 
+    scroll-y="true" 
+    class="scrollview"
+    scroll-with-animation="true"
+    enable-back-to-top="true"
+    scroll-anchoring="true"
+    scroll-top="{{scrollTop}}"
+    scroll-into-view="{{scrollIntoView}}"
+    bindtap="onClose"
+    refresher-enabled="{{true}}"
+    bindscrolltoupper=""
+    bindrefresherpulling="startPull"
+    bindrefresherrefresh="refreshPull"
+    bindrefresherrestore="restorePull"
+    refresher-triggered="{{refreshStatus}}"
+    style="height: {{windowHeight-toolHeight-toolViewHeight}}px">
+    <view class="msg-box">
+      <block wx:for="{{talkData2}}" wx:key='index'>
+        <view class="msg-item {{ item.fromid  == fromid ? 'msg-item-reverse' : '' }}" id="{{item.id}}">
+          <!--  身份判断，头像布局 -->
+          <block wx:if="{{item.fromid == fromid}}">
+            <image class="adverse-head" src="{{from_head}}"></image>
+          </block>
+          <block wx:else>
+            <image class="adverse-head" src="{{to_head || '../img/my/avatar.png'}}"></image>
+          </block>
+          <!-- 聊天内容类型判断 -->
+          <!-- 表情文字 -->
+          <block wx:if="{{item.type == 'text'}}">
+            <view class="flex-wrap flex-center text-box {{item.fromid  == fromid ? 'text-green' : 'text-default'}}" style="flex-wrap: wrap;">
+              <block wx:for="{{item.content}}" wx:for-item="it" wx:key="index">
+                <block wx:if="{{it.type == 1}}">
+                  <view wx:for="{{it.content}}" wx:for-item="itcon">
+                      {{itcon}}
+                  </view>
+                </block>
+                <block wx:if="{{it.type == 2}}">
+                  <view style="display: inline-block; width: {{lineHeight}}px; height: {{lineHeight}}px">
+                    <view 
+                      class="{{it.imageClass}}"
+                      style="background-image: url({{emojiSource}});transform-origin: 0 0; transform: scale({{lineHeight / 64}});vertical-align:middle;"></view>
+                  </view>
+                </block>
+              </block>
+            </view>
+          </block>
+          <!-- 图片 -->
+          <block wx:if="{{item.type == 'image'}}">
+            <view class="flex-wrap flex-center img-box {{item.fromid  == fromid ? 'text-green' : 'text-default'}}">
+              <image src="{{item.image.url}}" style="width: {{item.image.width}}rpx;height: {{item.image.height}}rpx;border-radius: 8rpx;background:#f4f4f4" mode="widthFix"></image>
+            </view>
+          </block>
+          <!-- 语音 -->
+          <block wx:if="{{item.type == 'record'}}">
+            <view class="flex-wrap flex-center text-box {{item.fromid  == fromid ? 'text-green' : 'text-default'}}" bindtap="playVoice" data-voice="{{item.record}}" data-index="{{index}}">
+              <text class="record-text" style="padding-left: {{item.timestemp*10}}rpx">{{item.timestemp}}''</text>
+              <image src="../img/record-icon.png" class="record-icon {{item.playStatus ? 'playing' : ''}}"></image>
+            </view>
+          </block>
+          <!-- 文件 -->
+          <block wx:if="{{item.type == 'file'}}">
+            <view class="flex-wrap flex-center text-box {{item.fromid  == fromid ? 'text-green' : 'text-default'}}">
+              <block wx:for="{{item.content}}" wx:for-item="it" wx:key="index">
+                <block wx:if="{{it.type == 1}}">
+                  {{it.content}}
+                </block>
+                <block wx:if="{{it.type == 2}}">
+                  <view style="display: inline-block; width: {{lineHeight}}px; height: {{lineHeight}}px">
+                    <view 
+                      class="{{it.imageClass}}"
+                      style="background-image: url({{emojiSource}});transform-origin: 0 0; transform: scale({{lineHeight / 64}});"></view>
+                  </view>
+                </block>
+                <block wx:if="{{it.type == 3}}">
+                  <image src="{{it.img.url}}" style="width: {{it.img.width}}rpx;height: {{it.img.height}}rpx;border-radius: 8rpx;background:#f4f4f4" mode="widthFix"></image>
+                </block>
+                <block wx:if="{{it.type == 4}}">
+                  <view bindtap="playVoice" data-voice="{{it.record}}">
+                    <text class="record-text" style="padding-left: {{it.timestemp*10}}rpx">{{it.timestemp}}''</text>
+                    <image src="../img/record-icon.png" class="record-icon"></image>
+                  </view>
+                </block>
+              </block>
+            </view>
+          </block>
+          
+        </view>
+      </block>
+    </view>
+    <!-- <view style="height: {{toolViewHeight}}px"></view> -->
+  </scroll-view>
+  <!-- 底部输入框功能区 -->
+  <view class="tools" style="height: {{keyboardHeight ? keyboardHeight+toolHeight*2/3 : emojiShow ? 300+toolHeight/2 : functionShow ? 200+toolHeight/2 : ''}}px">
+    <!-- iphoneX安全区域 -->
+    <view style="height: {{ emojiShow || functionShow ? '' : isIphoneXHeight}}rpx">
+      <view class="tools_label">
+        <view class="tools_icon" bindtap="{{isRcord ?'':'onRecord'}}">
+            <block wx:if="{{!isRcord}}">
+              <image src="../img/voice.png" style="width: 60rpx; height: 60rpx"></image>
+            </block>
+            <block wx:else>
+              <image src="../img/keyboard.png" style="width: 60rpx; height: 60rpx"></image>
+            </block>
+          </view>
+        <view>
+          <input 
+            class="input"
+            hidden="{{isRcord}}" 
+            type="text" 
+            name="input" 
+            confirm-hold 
+            cursor-spacing="8px"
+            value="{{comment}}" 
+            bindfocus="bindFocus"
+            bindblur="bindBlur"
+            bindinput="onInput"
+            confirm-type="send"
+            focus="{{inputFocus}}"
+            cursor="{{cursor}}" 
+            bindconfirm="onConfirm"
+            bindkeyboardheightchange="onkeyboardHeightChange"
+            adjust-position="{{false}}"
+            cursor-spacing="20rpx"
+          >
+          </input>
+          <view hidden="{{!isRcord}}" class="input record-view" hover-class="view-hover" catchtouchstart='onRecordStart' catchtouchend="onRecordEnd" >按住 说话</view>
+        </view>
+        <!-- 发送按钮 -->
+        <view class="tools_icon" bindtap="">
+            <image src="../img/emoji.png" style="width: 60rpx; height: 60rpx;margin-right:15rpx" bindtap="showEmoji"></image>
+            <image src="../img/add.png" style="width: 52rpx; height: 52rpx;margin-right:10rpx" bindtap="showFunction"></image>
+        </view>
+      </view>
+    </view>
+    <view class="reply_panel_wrp" style="height: {{keyboardHeight ? keyboardHeight : emojiShow ? 300 : 200}}px;" hidden="{{!emojiShow && !functionShow}}">
+      <view class="reply_panel {{emojiShow ? 'show': ''}}" hidden="{{!emojiShow}}">
+        <mp-emoji source="{{emojiSource}}" class="mp-emoji" bindinsertemoji="insertEmoji" binddelemoji="deleteEmoji" bindsend="onsend"></mp-emoji>
+      </view>
+      <view class="reply_panel {{functionShow ? 'show': ''}}" hidden="{{!functionShow}}">
+        <swiper 
+          indicator-dots="{{false}}" 
+          indicator-color="#bbbbbb" 
+          style="height: 160px" 
+          indicator-active-color="#8c8c8c">
+          <swiper-item class="swiper-item flex-wrap">
+            <block wx:for="{{menuList}}" wx:key="index">
+              <view class="flex-wrap flex-column flex-center item" data-type="{{item.type}}" bindtap="menuFun">
+                <view class="flex-wrap flex-center flex-c-center tool-view">
+                  <image class="img" src="{{item.icon}}"></image>
+                </view>
+                <view class="fsize-26 fcolor-666 mt15">{{item.text}}</view>
+              </view>
+            </block>
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</view>

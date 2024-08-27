@@ -19,13 +19,13 @@ NewsModel.DB_STRUCTURE = {
 	NEWS_ID: 'string|true',
 
 	NEWS_TITLE: 'string|false|comment=标题',
-	NEWS_DESC: 'string|false|comment=描述',
-	NEWS_STATUS: 'int|true|default=1|comment=状态 0/1',
+	NEWS_DESC: 'string|false|comment=简介',
+	NEWS_STATUS: 'int|true|default=1|comment=状态 0停用/1启用',
 
 	NEWS_CATE_ID: 'string|true|comment=分类编号',
 	NEWS_CATE_NAME: 'string|true|comment=分类冗余',
 
-	NEWS_ORDER: 'int|true|default=9999',
+	NEWS_ORDER: 'int|true|default=9999|comment=排序编号',
 	NEWS_VOUCH: 'int|true|default=0',
 
 	NEWS_CONTENT: 'array|true|default=[]|comment=内容',

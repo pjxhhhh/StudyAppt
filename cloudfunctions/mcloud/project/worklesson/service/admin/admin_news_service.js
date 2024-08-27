@@ -17,7 +17,7 @@ class AdminNewsService extends BaseProjectAdminService {
 
 	/** 推荐首页SETUP */
 	async vouchNewsSetup(id, vouch) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[课时]功能暂不开放，如有需要请加作者微信：cclinux0730');
 	}
 
 	/**添加资讯 */
@@ -29,15 +29,37 @@ class AdminNewsService extends BaseProjectAdminService {
 		desc = '',
 		forms
 	}) {
+    const current = timeUtil.time();
+    const timestamp = current + dataUtil.genRandomString(3);
+    console.log("insertNews, time: " + current + ", timestamp: " + timestamp);
+    console.log("title: " + title + ", cateId: " + cateId + ", cateName: " + cateName + ", desc: " + desc + ", forms: " + forms)
+    const data = {
+      NEWS_ID: timestamp,
+      NEWS_TITLE : title,
+      NEWS_DESC : desc,
+      NEWS_CATE_ID : cateId,
+      NEWS_CATE_NAME : cateName,
+      NEWS_ORDER : order,
+      NEWS_ADD_TIME : current,
+      NEWS_EDIT_TIME : current
+    }
 
+    let result = NewsModel.insert(data);
+    return result;
 
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		// this.AppError('[insertNews]该功能暂不开放，如有需要请加作者微信：cclinux0730');
 	}
 
 	/**删除资讯数据 */
 	async delNews(id) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
-
+    const where = {
+      NEWS_ID : id
+    };
+    let effect = NewsModel.del(where);
+    return {
+      effect
+    };
+		// this.AppError('[delNews]该功能暂不开放，如有需要请加作者微信：cclinux0730');
 	}
 
 	/**获取资讯信息 */
@@ -58,7 +80,7 @@ class AdminNewsService extends BaseProjectAdminService {
 		id,
 		hasImageForms
 	}) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[updateNewsForms]该功能暂不开放，如有需要请加作者微信：cclinux0730');
 	}
 
 
@@ -71,8 +93,11 @@ class AdminNewsService extends BaseProjectAdminService {
 		content // 富文本数组
 	}) {
 
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
-
+    const where = {
+      _id : id
+    };
+    console.log("updateNewsContent, id: " + id + ", content: " + content);
+    await NewsModel.edit(where, { NEWS_CONTENT: content});
 	}
 
 	/**
@@ -83,8 +108,13 @@ class AdminNewsService extends BaseProjectAdminService {
 		id,
 		imgList // 图片数组
 	}) {
+    const where = {
+      _id : id
+    };
+    console.log("updateNewsPic, id: " + id + ", pic: " + imgList);
+    await NewsModel.edit(where, { NEWS_PIC: imgList});
 
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		// this.AppError('[updateNewsPic]该功能暂不开放，如有需要请加作者微信：cclinux0730');
 
 	}
 
@@ -100,7 +130,23 @@ class AdminNewsService extends BaseProjectAdminService {
 		forms
 	}) {
 
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+    const where = {
+      _id : id
+    };
+    console.log("editNews, id: " + id + ", title: " + title + "， forms: " + forms);
+    let news = NewsModel.getOne(where);
+    if (!news)
+      this.AppError("当前bot不存在，id: " + id);
+
+    let newNews = {
+      NEWS_TITLE : title,
+      NEWS_CATE_ID : cateId,
+      NEWS_CATE_NAME : cateName,
+      NEWS_ORDER : order,
+      NEWS_DESC : desc
+    }
+    await NewsModel.edit(where, newNews);
+		// this.AppError('[editNews]该功能暂不开放，如有需要请加作者微信：cclinux0730');
 	}
 
 	/**取得资讯分页列表 */
@@ -164,17 +210,20 @@ class AdminNewsService extends BaseProjectAdminService {
 
 	/**修改资讯状态 */
 	async statusNews(id, status) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+    let where = {
+      _id : id
+    };
+    await NewsModel.edit(where, { NEWS_STATUS : status });
 	}
 
 	/**置顶与排序设定 */
 	async sortNews(id, sort) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[sortNews]该功能暂不开放，如有需要请加作者微信：cclinux0730');
 	}
 
 	/**首页设定 */
 	async vouchNews(id, vouch) {
-		this.AppError('[课时]该功能暂不开放，如有需要请加作者微信：cclinux0730');
+		this.AppError('[vouchNews]该功能暂不开放，如有需要请加作者微信：cclinux0730');
 	}
 }
 

@@ -2,5 +2,5 @@
 	"usingComponents": { 
 	}, 
 	"disableScroll": true, 
-	"navigationBarTitleText": "最新通知"
+	"navigationBarTitleText": "公告列表"
 }

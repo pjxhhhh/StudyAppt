@@ -136,5 +136,25 @@ Page({
 			},
 			fail: function (res) { }
 		})
-	}
+  },
+  
+  computeDays: function (user) {
+    // return "aaa";
+    let totalSeconds = user.USER_LESSON_TOTAL_CNT;
+    // if (!user)
+    //     return "0秒";
+    const days = Math.floor(totalSeconds / 86400); // 计算天数
+    const hours = Math.floor((totalSeconds % 86400) / 3600); // 计算小时数
+    const minutes = Math.floor((totalSeconds % 3600) / 60); // 计算分钟数
+    days = days > 0 ? days : 0;
+    console.log("conpute day: " + days);
+
+    // return `${totalSeconds}x${days}天${hours}时${minutes}分`;
+    let timeStr = '';
+    if (days > 0) timeStr += `${days}天`;
+    if (hours > 0 || days > 0) timeStr += `${hours}时`;
+    if (minutes > 0 || hours > 0 || days > 0) timeStr += `${minutes}分`;
+
+    return timeStr;
+  }
 })

@@ -12,7 +12,7 @@ App({
 				//   此处请填入环境 ID, 环境 ID 可打开云控制台查看
 				//   如不填则使用默认环境（第一个创建的环境）
 				// env: 'my-env-id',
-				env: setting.CLOUD_ID,
+				env: "ai12345-2ge7fqfr02992794",
 				traceUser: true,
 			})
 		}

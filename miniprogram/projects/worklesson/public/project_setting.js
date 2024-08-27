@@ -13,9 +13,9 @@ module.exports = { //worklesson
 	USER_FIELDS: [
 	],
 
-	NEWS_NAME: '最新通知',
+	NEWS_NAME: '公告列表',
 	NEWS_CATE: [
-		{ id: 1, title: '最新通知', style: 'leftpic' },
+		{ id: 1, title: '公告列表', style: 'leftpic' },
 	],
 	NEWS_FIELDS: [
 
@@ -23,7 +23,7 @@ module.exports = { //worklesson
 
 	MEET_NAME: '预约',
 	MEET_CATE: [
-		{ id: 1, title: '老师预约', style: 'leftbig1' }, 
+    { id: 1, title: 'bot列表', style: 'leftbig1' }, 
 		{ id: 2, title: '课程预约', style: 'leftbig1' }, 
 	],
 	MEET_CAN_NULL_TIME: false, // 是否允许有无时段的日期保存和展示

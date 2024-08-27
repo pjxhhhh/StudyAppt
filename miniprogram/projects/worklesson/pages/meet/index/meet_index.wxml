@@ -5,7 +5,7 @@
 		<!-- List Begin -->
 		<view class="main">
 			<view class="list">
-				<view class="item" bindtap="url" data-url="../detail/meet_detail?id={{item._id}}" wx:for="{{dataList.list}}" wx:key="k">
+				<view class="item" bindtap="url" data-url="../chat_room/index?" wx:for="{{dataList.list}}" wx:key="k">
 					<view class="left">
 						<image src="{{item.MEET_OBJ.cover[0]}}" class="loading {{item.MEET_CATE_ID==1?'round shadow':''}}" mode="aspectFill" />
 					</view>

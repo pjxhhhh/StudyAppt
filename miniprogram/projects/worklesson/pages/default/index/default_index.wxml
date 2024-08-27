@@ -3,35 +3,43 @@
 	</view>
 <view class="main"> 
 	<view class="list">
+
+  
 		<view class="item" bindtap="url" data-type="relaunch" data-url="../../news/index/news_index">
 			<image mode="aspectFill" src="../../../images/menu/notice.png" />
-			<view class="title">最新通知</view>
+			<view class="title">公告列表</view>
 		</view>
 
 		<view class="item" bindtap="url" data-type="relaunch" data-url="../../meet/calendar/meet_calendar">
 			<image mode="aspectFill" src="../../../images/menu/rili.png" />
-			<view class="title">预约日历</view>
+			<view class="title">bot日历</view>
 		</view>
 
 		<view class="item" bindtap="url" data-url="../../meet/index/meet_index?id=1">
 			<image mode="aspectFill" src="../../../images/menu/laoshi.png" />
-			<view class="title">老师预约</view>
+			<view class="title">bot列表</view>
 		</view>
-		<view class="item" bindtap="url" data-url="../../meet/index/meet_index?id=2">
+
+		<view class="item" bindtap="url" data-url="../../meet/chat_room/index?id=1">
+			<image mode="aspectFill" src="../../../images/menu/notice.png" />
+			<view class="title">自己创建的聊天列表</view>
+		</view>
+
+		<!-- <view class="item" bindtap="url" data-url="../../meet/index/meet_index?id=2">
 			<image mode="aspectFill" src="../../../images/menu/kechen.png" />
 			<view class="title">课程预约</view>
-		</view>
+		</view> -->
 		
 
-		<view class="item" bindtap="url" data-type="relaunch" data-url="../../my/index/my_index">
+		<!-- <view class="item" bindtap="url" data-type="relaunch" data-url="../../my/index/my_index">
 			<image mode="aspectFill" src="../../../images/menu/my.png" />
 			<view class="title">个人中心</view>
-		</view>
+		</view> -->
 
-		<view class="item" bindtap="url" data-url="../../about/index/about_index?key=SETUP_CONTENT_ABOUT">
+		<!-- <view class="item" bindtap="url" data-url="../../about/index/about_index?key=SETUP_CONTENT_ABOUT">
 			<image mode="aspectFill" src="../../../images/menu/about.png" />
 			<view class="title">关于我们</view>
-		</view>
+		</view> -->
 		
 	</view>
 </view>

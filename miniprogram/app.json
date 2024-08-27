@@ -35,6 +35,7 @@
 				"projects/worklesson/pages/meet/calendar/meet_calendar",
 				"projects/worklesson/pages/meet/join/meet_join",
 				"projects/worklesson/pages/meet/detail/meet_detail",
+				"projects/worklesson/pages/meet/chat_room/index",
 				"projects/worklesson/pages/meet/my_join_list/meet_my_join_list",
 				"projects/worklesson/pages/meet/my_join_detail/meet_my_join_detail",
 				"projects/worklesson/pages/meet/lesson_log/meet_lesson_log",
@@ -64,7 +65,7 @@
 		"backgroundColor": "#E8EDF4",
 		"backgroundTextStyle": "dark",
 		"navigationBarBackgroundColor": "#E8EDF4",
-		"navigationBarTitleText": "学员课时预约小程序",
+		"navigationBarTitleText": "智慧小仓库",
 		"navigationBarTextStyle": "black"
 	},
 	"tabBar": {
@@ -80,18 +81,17 @@
 				"selectedIconPath": "/projects/worklesson/images/tabbar/home_cur.png"
 			},
 			{
-				"pagePath": "projects/worklesson/pages/news/cate1/news_cate1",
-				"text": "最新通知",
-				"iconPath": "/projects/worklesson/images/tabbar/news.png",
-				"selectedIconPath": "/projects/worklesson/images/tabbar/news_cur.png"
-			},
-			{
 				"pagePath": "projects/worklesson/pages/meet/calendar/meet_calendar",
 				"text": "预约日历",
 				"iconPath": "/projects/worklesson/images/tabbar/day.png",
 				"selectedIconPath": "/projects/worklesson/images/tabbar/day_cur.png"
 			},
-		 
+			{
+				"pagePath": "projects/worklesson/pages/news/cate1/news_cate1",
+				"text": "公告列表",
+				"iconPath": "/projects/worklesson/images/tabbar/news.png",
+				"selectedIconPath": "/projects/worklesson/images/tabbar/news_cur.png"
+			},
 			{
 				"pagePath": "projects/worklesson/pages/my/index/my_index",
 				"text": "我的",

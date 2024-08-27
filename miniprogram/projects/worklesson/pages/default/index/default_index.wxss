@@ -27,7 +27,7 @@ page {
 }
 
 .list .item {
-	width: calc((100% - 30rpx) / 2);
+  width: calc((100% - 30rpx));
 	background-color: #fff;
 	border-radius: 50rpx;
 	display: flex;

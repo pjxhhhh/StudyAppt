@@ -1,4 +1,11 @@
 {
+  "triggers": [
+    {
+      "name": "myCloudFunction",
+      "type": "timer",
+      "config": "0 0 * * * *"
+    }
+  ],
 	"permissions": {
 		"openapi": ["wxacode.getUnlimited", "security.imgSecCheck", "security.msgSecCheck","serviceMarket.invokeService"]
 	}

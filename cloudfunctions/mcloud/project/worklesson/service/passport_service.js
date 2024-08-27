@@ -63,7 +63,7 @@ class PassportService extends BaseProjectService {
 		}
 		cnt = await UserModel.count(where);
 		if (cnt == 0)
-			this.AppError('该“姓名与手机”未登记为学员，请修改或者联系管理员~');
+			this.AppError('该“姓名与手机”未登记为学员，请联系管理员~');
 
 		// 入库
 		let data = {

@@ -1,7 +1,7 @@
 module.exports = {
 
 	//### 环境相关 
-	CLOUD_ID: 'cloud1-3go08kosfd9d453c', //你的云环境id   
+	CLOUD_ID: 'ai12345-2ge7fqfr02992794', //你的云环境id   
 
 	// ##################################################################   
 	COLLECTION_PRFIX: 'bx_',

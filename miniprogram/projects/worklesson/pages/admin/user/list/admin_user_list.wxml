@@ -45,11 +45,24 @@
 						<view class="content">可使用{{item.USER_LESSON_TOTAL_CNT}}节，已使用{{item.USER_LESSON_USED_CNT}}节 </view>
 					</view>
 
+					<view class="info-item" >
+						<view class="title">到期时间</view>
+						<view class="mao">：</view>
+						<view class="content">这里缺字段-{{item.USER_ADD_TIME}} </view>
+					</view>
+
+					<view class="info-item" >
+						<view class="title">可用时长</view>
+						<view class="mao">：</view>
+						<view class="content">这里不缺字段-{{item.USER_LESSON_TOTAL_CNT}}分钟 </view>
+					</view>
+
 					<view class="info-item" wx:if="{{item.USER_TYPE==0}}">
 						<view class="title">创建</view>
 						<view class="mao">：</view>
 						<view class="content">{{item.USER_ADD_TIME}}</view>
 					</view>
+
 					<view class="info-item" wx:else>
 						<view class="title">注册</view>
 						<view class="mao">：</view>

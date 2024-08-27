@@ -13,7 +13,7 @@
 
 		<view class="tab-bar-item" bindtap="url" data-type="relaunch" data-url="/projects/worklesson/pages/news/index/news_index">
 			<image class="tab-icon" src="/projects/worklesson/images/tabbar/news{{curMenu=='news_index'?'_cur':''}}.png"></image>
-			<view class="tab-text {{curMenu=='news_index'?'menu-project':''}}">最新通知</view>
+			<view class="tab-text {{curMenu=='news_index'?'menu-project':''}}">公告列表</view>
 		</view> 
 	 
 
